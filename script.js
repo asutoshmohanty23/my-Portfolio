@@ -7,6 +7,7 @@
 
 // =============================================================================
 // 1. DEFAULT DATA & STATE MANAGEMENT
+// 1. DATA SOURCE & BASE CONFIGURATION (from portfolio-data.js)
 // =============================================================================
 
 const STORAGE_KEYS = {
@@ -18,8 +19,11 @@ const STORAGE_KEYS = {
 const DEFAULT_AVATAR = "https://images.unsplash.com/photo-1534972195531-a756b1129f63?w=400&auto=format&fit=crop&q=80";
 const DEFAULT_PROJECT_IMG = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80";
 
+// Read from window.PORTFOLIO_DATA if loaded from portfolio-data.js
+const RAW_CONFIG = (typeof window !== 'undefined' && window.PORTFOLIO_DATA) ? window.PORTFOLIO_DATA : {};
+
 const DEFAULT_PROFILE = {
-  name: "Alex Developer",
+  name: "Asutosh Mohanty",
   roles: [
     "Software Engineer",
     "DSA Problem Solver",
@@ -32,96 +36,101 @@ const DEFAULT_PROFILE = {
   dsaCount: "450+",
   projectsCount: "12+",
   languagesCount: "6",
-  location: "Global / Remote",
-  email: "developer@example.com",
-  github: "https://github.com",
-  linkedin: "https://linkedin.com",
-  leetcode: "https://leetcode.com",
+  location: "India / Remote",
+  email: "asutoshmohanty776@gmail.com",
+  github: "https://github.com/asutoshmohanty23",
+  linkedin: "https://linkedin.com/in/asutosh-mohanty",
+  leetcode: "https://leetcode.com/asutoshmohanty",
   resume: "#",
-  avatarUrl: DEFAULT_AVATAR
+  avatarUrl: DEFAULT_AVATAR,
+  ...(RAW_CONFIG.profile || {})
 };
 
-const DEFAULT_EDUCATION = [
-  {
-    id: "edu-1",
-    degree: "Bachelor of Technology (B.Tech) - Computer Science & Engineering",
-    institution: "Institute of Engineering & Technology / University",
-    duration: "2022 - 2026",
-    grade: "CGPA: 8.8 / 10.0",
-    description: "Specialized in Data Structures & Algorithms, Systems Programming, Database Systems, Computer Networks, and Object-Oriented Software Design."
-  },
-  {
-    id: "edu-2",
-    degree: "Senior Secondary Education (Class XII - PCM)",
-    institution: "Senior Secondary Public School",
-    duration: "2020 - 2022",
-    grade: "Percentage: 92.4%",
-    description: "Core subjects: Physics, Chemistry, Mathematics, and Computer Science with top percentile honors."
-  }
-];
+const DEFAULT_EDUCATION = (RAW_CONFIG.education && Array.isArray(RAW_CONFIG.education) && RAW_CONFIG.education.length > 0)
+  ? RAW_CONFIG.education
+  : [
+    {
+      id: "edu-1",
+      degree: "Bachelor of Technology (B.Tech) - Computer Science & Engineering",
+      institution: "Institute of Engineering & Technology / University",
+      duration: "2022 - 2026",
+      grade: "CGPA: 8.8 / 10.0",
+      description: "Specialized in Data Structures & Algorithms, Systems Programming, Database Systems, Computer Networks, and Object-Oriented Software Design."
+    },
+    {
+      id: "edu-2",
+      degree: "Senior Secondary Education (Class XII - PCM)",
+      institution: "Senior Secondary Public School",
+      duration: "2020 - 2022",
+      grade: "Percentage: 92.4%",
+      description: "Core subjects: Physics, Chemistry, Mathematics, and Computer Science with top percentile honors."
+    }
+  ];
 
-const DEFAULT_PROJECTS = [
-  {
-    id: "proj-1",
-    title: "Algorithmic Pathfinding & Graph Visualizer",
-    category: "DSA",
-    tags: ["Python", "DSA", "Dijkstra", "A* Search", "Pygame"],
-    description: "Interactive visualizer implementing Dijkstra's and A* search algorithms with obstacle generation, weighted nodes, and real-time path cost optimization.",
-    github: "https://github.com",
-    demo: "https://example.com",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80"
-  },
-  {
-    id: "proj-2",
-    title: "High-Throughput Multi-Threaded Server",
-    category: "Java",
-    tags: ["Java", "Multithreading", "Sockets", "OOP", "Concurrency"],
-    description: "Concurrent HTTP server in core Java utilizing custom thread pools, synchronized request queues, and non-blocking socket I/O handlers.",
-    github: "https://github.com",
-    demo: "",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop&q=80"
-  },
-  {
-    id: "proj-3",
-    title: "Custom Memory Allocator & Unix Shell",
-    category: "C",
-    tags: ["C", "Pointers", "Memory Management", "UNIX", "Syscalls"],
-    description: "POSIX-compliant command shell and dynamic memory allocator (malloc/free) implementing boundary tags, best-fit free lists, and memory coalescing.",
-    github: "https://github.com",
-    demo: "",
-    image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&auto=format&fit=crop&q=80"
-  },
-  {
-    id: "proj-4",
-    title: "Interactive Code Hub & Developer Dashboard",
-    category: "Web",
-    tags: ["JavaScript", "HTML5", "CSS3", "REST APIs", "LocalStorage"],
-    description: "Feature-packed developer workbench with syntax-highlighted snippet manager, markdown editor, task kanban, and instant local storage sync.",
-    github: "https://github.com",
-    demo: "https://example.com",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80"
-  },
-  {
-    id: "proj-5",
-    title: "Automated Data Extraction & Analyzer",
-    category: "Python",
-    tags: ["Python", "BeautifulSoup", "Pandas", "Data Structures"],
-    description: "High-performance automated web scraper and data processing pipeline extracting complex datasets and generating statistical trend reports.",
-    github: "https://github.com",
-    demo: "",
-    image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&auto=format&fit=crop&q=80"
-  },
-  {
-    id: "proj-6",
-    title: "Binary Search Tree & Heap Animator",
-    category: "DSA",
-    tags: ["JavaScript", "Canvas", "Trees", "Heaps", "Algorithms"],
-    description: "Interactive visual tool animating AVL tree self-balancing rotations, binary heap insertions, and graph traversals (BFS/DFS) step by step.",
-    github: "https://github.com",
-    demo: "https://example.com",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80"
-  }
-];
+const DEFAULT_PROJECTS = (RAW_CONFIG.projects && Array.isArray(RAW_CONFIG.projects) && RAW_CONFIG.projects.length > 0)
+  ? RAW_CONFIG.projects
+  : [
+    {
+      id: "proj-1",
+      title: "Algorithmic Pathfinding & Graph Visualizer",
+      category: "DSA",
+      tags: ["Python", "DSA", "Dijkstra", "A* Search", "Pygame"],
+      description: "Interactive visualizer implementing Dijkstra's and A* search algorithms with obstacle generation, weighted nodes, and real-time path cost optimization.",
+      github: "https://github.com/asutoshmohanty23",
+      demo: "https://example.com",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80"
+    },
+    {
+      id: "proj-2",
+      title: "High-Throughput Multi-Threaded Server",
+      category: "Java",
+      tags: ["Java", "Multithreading", "Sockets", "OOP", "Concurrency"],
+      description: "Concurrent HTTP server in core Java utilizing custom thread pools, synchronized request queues, and non-blocking socket I/O handlers.",
+      github: "https://github.com/asutoshmohanty23",
+      demo: "",
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop&q=80"
+    },
+    {
+      id: "proj-3",
+      title: "Custom Memory Allocator & Unix Shell",
+      category: "C",
+      tags: ["C", "Pointers", "Memory Management", "UNIX", "Syscalls"],
+      description: "POSIX-compliant command shell and dynamic memory allocator (malloc/free) implementing boundary tags, best-fit free lists, and memory coalescing.",
+      github: "https://github.com/asutoshmohanty23",
+      demo: "",
+      image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&auto=format&fit=crop&q=80"
+    },
+    {
+      id: "proj-4",
+      title: "Interactive Code Hub & Developer Dashboard",
+      category: "Web",
+      tags: ["JavaScript", "HTML5", "CSS3", "REST APIs", "LocalStorage"],
+      description: "Feature-packed developer workbench with syntax-highlighted snippet manager, markdown editor, task kanban, and instant local storage sync.",
+      github: "https://github.com/asutoshmohanty23",
+      demo: "https://example.com",
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80"
+    },
+    {
+      id: "proj-5",
+      title: "Automated Data Extraction & Analyzer",
+      category: "Python",
+      tags: ["Python", "BeautifulSoup", "Pandas", "Data Structures"],
+      description: "High-performance automated web scraper and data processing pipeline extracting complex datasets and generating statistical trend reports.",
+      github: "https://github.com/asutoshmohanty23",
+      demo: "",
+      image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&auto=format&fit=crop&q=80"
+    },
+    {
+      id: "proj-6",
+      title: "Binary Search Tree & Heap Animator",
+      category: "DSA",
+      tags: ["JavaScript", "Canvas", "Trees", "Heaps", "Algorithms"],
+      description: "Interactive visual tool animating AVL tree self-balancing rotations, binary heap insertions, and graph traversals (BFS/DFS) step by step.",
+      github: "https://github.com/asutoshmohanty23",
+      demo: "https://example.com",
+      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80"
+    }
+  ];
 
 let appState = {
   profile: { ...DEFAULT_PROFILE },
@@ -1737,6 +1746,78 @@ function bindAppEvents() {
   }
 
   // ---------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+  // Permanent JS Data Generator
+  // ---------------------------------------------------------------------------
+  function buildPortfolioDataJsCode() {
+    const dataObj = {
+      profile: appState.profile,
+      education: appState.education,
+      projects: appState.projects
+    };
+
+    return `/**
+ * =============================================================================
+ * PORTFOLIO CONFIGURATION & PERMANENT DATA
+ * =============================================================================
+ * This file contains your permanent portfolio details.
+ * Any visitor loading your website (via GitHub Pages or custom domain)
+ * will automatically see this data.
+ * 
+ * 💡 HOW TO UPDATE IN THE FUTURE:
+ * 1. Open your portfolio in the browser.
+ * 2. Click "Edit Profile & Projects" to customize your details.
+ * 3. Go to the "Permanent Save & Export" tab and click "Download portfolio-data.js"
+ * 4. Replace this file in your project folder and push to GitHub!
+ * 
+ * OR: Edit this file directly in VS Code / text editor and push to GitHub.
+ * =============================================================================
+ */
+
+window.PORTFOLIO_DATA = ${JSON.stringify(dataObj, null, 2)};
+`;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Permanent JS Data File Download
+  // ---------------------------------------------------------------------------
+  const downloadDataBtn = document.getElementById('download-data-file-btn');
+  if (downloadDataBtn) {
+    downloadDataBtn.addEventListener('click', () => {
+      const fileContent = buildPortfolioDataJsCode();
+      const blob = new Blob([fileContent], { type: 'application/javascript;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'portfolio-data.js';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('portfolio-data.js downloaded! Replace it in your project folder & push to GitHub.', 'success');
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Permanent JS Data Code Copy
+  // ---------------------------------------------------------------------------
+  const copyDataBtn = document.getElementById('copy-data-code-btn');
+  if (copyDataBtn) {
+    copyDataBtn.addEventListener('click', () => {
+      const fileContent = buildPortfolioDataJsCode();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(fileContent).then(() => {
+          showToast('Code copied! Paste into portfolio-data.js, save & push to GitHub.', 'success');
+        }).catch(() => {
+          showToast('Could not access clipboard. Please use Download button.', 'danger');
+        });
+      } else {
+        showToast('Clipboard API not available. Please use Download button.', 'danger');
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
   // Backup & JSON Export
   // ---------------------------------------------------------------------------
   const exportBtn = document.getElementById('export-json-btn');
@@ -1799,7 +1880,7 @@ function bindAppEvents() {
   const resetBtn = document.getElementById('reset-defaults-btn');
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
-      if (confirm('Are you sure you want to reset all data back to original defaults?')) {
+      if (confirm('Are you sure you want to reset all data back to the base portfolio-data.js?')) {
         localStorage.removeItem(STORAGE_KEYS.PROFILE);
         localStorage.removeItem(STORAGE_KEYS.EDUCATION);
         localStorage.removeItem(STORAGE_KEYS.PROJECTS);
@@ -1812,7 +1893,7 @@ function bindAppEvents() {
         renderModalEducationManager();
         renderModalProjectsManager();
         if (typewriterInstance) typewriterInstance.updateRoles(appState.profile.roles);
-        showToast('All portfolio data reset to defaults!', 'success');
+        showToast('All portfolio data reset to portfolio-data.js values!', 'success');
         closeCustomizerModal();
       }
     });
