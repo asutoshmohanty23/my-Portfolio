@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="page-title">Developer Portfolio | Software Engineer & DSA Enthusiast</title>
-  <meta name="description" content="Personal Portfolio of a passionate Software Developer proficient in JavaScript, Python, Java, C, HTML/CSS, and Data Structures & Algorithms." />
+  <title id="page-title">Asutosh Mohanty | Software Engineer & DSA Enthusiast</title>
+  <meta name="description" content="Personal Portfolio of Asutosh Mohanty - Software Developer proficient in JavaScript, Python, Java, C, HTML/CSS, and Data Structures & Algorithms." />
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +34,7 @@
     <div class="nav-container">
       <a href="#hero" class="nav-brand">
         <span class="brand-bracket">&lt;</span>
-        <span class="brand-name" id="nav-brand-name">DevPortfolio</span>
+        <span class="brand-name" id="nav-brand-name">AsutoshDev</span>
         <span class="brand-bracket">/&gt;</span>
       </a>
 
@@ -84,7 +84,7 @@
           </div>
 
           <h1 class="hero-title">
-            Hi, I'm <span class="gradient-text hero-name" id="hero-name">Alex Developer</span>
+            Hi, I'm <span class="gradient-text hero-name" id="hero-name">Asutosh Mohanty</span>
           </h1>
 
           <div class="typewriter-container">
@@ -147,7 +147,7 @@
             <div class="code-editor-body">
               <pre><code class="code-block"><span class="token-keyword">class</span> <span class="token-class">Developer</span>:
     <span class="token-keyword">def</span> <span class="token-function">__init__</span>(<span class="token-self">self</span>):
-        <span class="token-self">self</span>.name = <span class="token-string" id="code-hero-name">"Alex Developer"</span>
+        <span class="token-self">self</span>.name = <span class="token-string" id="code-hero-name">"Asutosh Mohanty"</span>
         <span class="token-self">self</span>.roles = [<span class="token-string">"Software Engineer"</span>, <span class="token-string">"Problem Solver"</span>]
         <span class="token-self">self</span>.languages = [<span class="token-string">"C"</span>, <span class="token-string">"Java"</span>, <span class="token-string">"Python"</span>, <span class="token-string">"JS"</span>]
         <span class="token-self">self</span>.loves_dsa = <span class="token-boolean">True</span>
@@ -661,7 +661,7 @@
       <div class="footer-left">
         <a href="#hero" class="nav-brand">
           <span class="brand-bracket">&lt;</span>
-          <span class="brand-name" id="footer-brand-name">DevPortfolio</span>
+          <span class="brand-name" id="footer-brand-name">AsutoshDev</span>
           <span class="brand-bracket">/&gt;</span>
         </a>
         <p class="footer-tagline">Crafted with modern HTML, CSS, JavaScript & Algorithmic precision.</p>
@@ -674,7 +674,7 @@
       </div>
 
       <div class="footer-right">
-        <p>&copy; <span id="current-year">2026</span> <span id="footer-copy-name">Developer</span>. All rights reserved.</p>
+        <p>&copy; <span id="current-year">2026</span> <span id="footer-copy-name">Asutosh Mohanty</span>. All rights reserved.</p>
         <div class="footer-subtext">
           <span class="live-dot"></span> Live Local Data Sync Enabled
         </div>
@@ -706,7 +706,7 @@
         <button class="tab-btn" data-tab="tab-education"><i class="fa-solid fa-graduation-cap"></i> Education</button>
         <button class="tab-btn" data-tab="tab-socials"><i class="fa-solid fa-share-nodes"></i> Social & Contact</button>
         <button class="tab-btn" data-tab="tab-projects"><i class="fa-solid fa-folder-tree"></i> Manage Projects</button>
-        <button class="tab-btn" data-tab="tab-backup"><i class="fa-solid fa-database"></i> Backup & Export</button>
+        <button class="tab-btn" data-tab="tab-backup"><i class="fa-solid fa-cloud-arrow-up"></i> Permanent Save & Export</button>
       </div>
 
       <div class="modal-body">
@@ -845,26 +845,52 @@
           </div>
         </div>
 
-        <!-- Tab 4: Backup, JSON Export & Reset -->
+        <!-- Tab 4: Backup, Permanent Save & JSON Export -->
         <div class="tab-pane" id="tab-backup">
           <div class="backup-section">
-            <h4>Data Persistence & Export</h4>
-            <p class="backup-info">
-              All your custom details and projects are stored directly in your browser's local memory. You can export this as a <code>portfolio_config.json</code> file to back it up, or import it on another computer.
-            </p>
+            <!-- Permanent GitHub Save Box -->
+            <div class="permanent-save-box">
+              <div class="permanent-save-header">
+                <div class="save-box-icon"><i class="fa-brands fa-github"></i></div>
+                <div>
+                  <h4>Make Changes Permanent For Everyone & GitHub</h4>
+                  <p>When you edit profile details or projects in this customizer, they save in your browser. To make your newest data visible to <strong>anyone who visits your live link</strong>, follow these 3 quick steps:</p>
+                </div>
+              </div>
+
+              <div class="permanent-save-steps">
+                <div class="step-chip"><span class="step-num">1</span> Edit and save your info in the tabs above</div>
+                <div class="step-chip"><span class="step-num">2</span> Click <strong>Download portfolio-data.js</strong> below</div>
+                <div class="step-chip"><span class="step-num">3</span> Replace the file in your folder & push to GitHub (<code>git push</code>)</div>
+              </div>
+
+              <div class="permanent-save-actions">
+                <button type="button" id="download-data-file-btn" class="btn btn-primary">
+                  <i class="fa-solid fa-cloud-arrow-down"></i> Download portfolio-data.js (Permanent)
+                </button>
+                <button type="button" id="copy-data-code-btn" class="btn btn-glass">
+                  <i class="fa-solid fa-copy"></i> Copy portfolio-data.js Code
+                </button>
+              </div>
+            </div>
+
+            <!-- Standard JSON Export / Import -->
+            <div class="json-backup-divider">
+              <span>Or manage local backup JSON</span>
+            </div>
 
             <div class="backup-actions">
-              <button id="export-json-btn" class="btn btn-outline">
-                <i class="fa-solid fa-file-export"></i> Export Data (JSON)
+              <button type="button" id="export-json-btn" class="btn btn-outline">
+                <i class="fa-solid fa-file-export"></i> Export JSON Backup
               </button>
 
               <label class="btn btn-outline import-btn-label">
-                <i class="fa-solid fa-file-import"></i> Import Data (JSON)
+                <i class="fa-solid fa-file-import"></i> Import JSON Backup
                 <input type="file" id="import-json-file" accept=".json" style="display:none;" />
               </label>
 
-              <button id="reset-defaults-btn" class="btn btn-danger-outline">
-                <i class="fa-solid fa-rotate-left"></i> Reset to Defaults
+              <button type="button" id="reset-defaults-btn" class="btn btn-danger-outline">
+                <i class="fa-solid fa-rotate-left"></i> Reset to Base Data
               </button>
             </div>
           </div>
@@ -1029,7 +1055,10 @@
     </div>
   </div>
 
+  <!-- Permanent Portfolio Data Configuration -->
+  <script src="portfolio-data.js"></script>
+
   <!-- Main JavaScript File -->
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
