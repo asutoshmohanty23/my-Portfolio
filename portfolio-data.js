@@ -40,7 +40,7 @@ window.PORTFOLIO_DATA = {
     linkedin: "https://linkedin.com/in/asutosh-mohanty",
     leetcode: "https://leetcode.com/asutoshmohanty",
     resume: "#",
-    avatarUrl: "https://images.unsplash.com/photo-1534972195531-a756b1129f63?w=400&auto=format&fit=crop&q=80"
+    avatarUrl: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300f2fe'/><stop offset='100%' stop-color='%234facfe'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='%23131b2e'/><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50%' y='58%' font-family='Arial,sans-serif' font-weight='bold' font-size='36' fill='%230d1117' text-anchor='middle'>AM</text></svg>"
   },
 
   // ---------------------------------------------------------------------------
