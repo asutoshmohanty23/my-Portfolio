@@ -30,15 +30,15 @@ window.PORTFOLIO_DATA = {
     ],
     bio: "Passionate software developer crafting robust applications in Python, Java, C, and JavaScript, with deep focus on Data Structures & Algorithms.",
     aboutHeadline: "Passionate Problem Solver & Software Builder",
-    aboutDescription: "I am a dedicated software developer with strong foundational skills across multiple languages like Python, Java, C, and JavaScript, along with full-stack web technologies (HTML, CSS). My true passion lies in breaking down complex problems with clean algorithms, optimal time-space complexity, and building responsive, user-friendly digital experiences.",
-    dsaCount: "450+",
-    projectsCount: "12+",
+    aboutDescription: "I am a Computer Science undergraduate specializing in AI & Machine Learning, with a strong foundation across Python, Java, C, and full-stack web development. I focus on breaking down complex engineering challenges into efficient, algorithmically sound solutions—bridging core computer science principles with practical, data-driven intelligence and intuitive user experiences.",
+    dsaCount: "300+",
+    projectsCount: "2+",
     languagesCount: "6",
     location: "India / Remote",
     email: "asutoshmohanty776@gmail.com",
     github: "https://github.com/asutoshmohanty23",
-    linkedin: "https://linkedin.com/in/asutosh-mohanty",
-    leetcode: "https://leetcode.com/asutoshmohanty",
+    linkedin: "https://www.linkedin.com/in/asutosh-mohanty-/",
+    leetcode: "",
     resume: "#",
     avatarUrl: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300f2fe'/><stop offset='100%' stop-color='%234facfe'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='%23131b2e'/><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50%' y='58%' font-family='Arial,sans-serif' font-weight='bold' font-size='36' fill='%230d1117' text-anchor='middle'>AM</text></svg>"
   },
@@ -49,19 +49,29 @@ window.PORTFOLIO_DATA = {
   education: [
     {
       id: "edu-1",
-      degree: "Bachelor of Technology (B.Tech) - Computer Science & Engineering",
-      institution: "Institute of Engineering & Technology / University",
-      duration: "2022 - 2026",
-      grade: "CGPA: 8.8 / 10.0",
-      description: "Specialized in Data Structures & Algorithms, Systems Programming, Database Systems, Computer Networks, and Object-Oriented Software Design."
+      degree: "Secondary Education (Class X)",
+      institution: "Odisha Adarsha Vidyalaya Dandapadar",
+      duration: "2022 - 2023",
+      grade: "Percentage: 74%",
+      description: "Completed 10th standard with a focus on core subject— Science, Mathematics Standard, English, Odia and Social Science—earning Top Percentile Honors for academic excellence."
     },
+
     {
       id: "edu-2",
-      degree: "Senior Secondary Education (Class XII - Science PCM)",
-      institution: "Higher Secondary Public School",
-      duration: "2020 - 2022",
-      grade: "Percentage: 92.4%",
-      description: "Core subjects: Physics, Chemistry, Mathematics, and Computer Science with academic excellence."
+      degree: "Senior Secondary Education (Class XII-PCM)",
+      institution: "Odisha Adarsha Vidyalaya Dandapadar",
+      duration: "2023 - 2025",
+      grade: "Percentage: 81.4%",
+      description: "Core subjects: Physics, Chemistry, Mathematics, English and Physical Education with top percentile honors."
+    },
+    
+    {
+      id: "edu-3",
+      degree: "Bachelor of Technology (B.Tech) - Computer Science & Engineering",
+      institution: "Sambalpur University Institute of Information Technology",
+      duration: "2025 - 2029",
+      grade: "",
+      description: "Pursuing a B.Tech in Computer Science and Engineering with a core specialization in AI & Machine Learning. Focused on bridging theoretical mathematics and statistical modeling with hands-on software development to build production-ready intelligent systems."
     }
   ],
 
@@ -71,61 +81,21 @@ window.PORTFOLIO_DATA = {
   projects: [
     {
       id: "proj-1",
-      title: "Algorithmic Pathfinding & Graph Visualizer",
-      category: "DSA",
-      tags: ["Python", "DSA", "Dijkstra", "A* Search", "Pygame"],
-      description: "Interactive visualizer implementing Dijkstra's and A* search algorithms with obstacle generation, weighted nodes, and real-time path cost optimization.",
-      github: "https://github.com/asutoshmohanty23",
-      demo: "https://example.com",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80"
-    },
-    {
-      id: "proj-2",
-      title: "High-Throughput Multi-Threaded Server",
-      category: "Java",
-      tags: ["Java", "Multithreading", "Sockets", "OOP", "Concurrency"],
-      description: "Concurrent HTTP server in core Java utilizing custom thread pools, synchronized request queues, and non-blocking socket I/O handlers.",
-      github: "https://github.com/asutoshmohanty23",
-      demo: "",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop&q=80"
-    },
-    {
-      id: "proj-3",
-      title: "Custom Memory Allocator & Unix Shell",
-      category: "C",
-      tags: ["C", "Pointers", "Memory Management", "UNIX", "Syscalls"],
-      description: "POSIX-compliant command shell and dynamic memory allocator (malloc/free) implementing boundary tags, best-fit free lists, and memory coalescing.",
-      github: "https://github.com/asutoshmohanty23",
-      demo: "",
-      image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=600&auto=format&fit=crop&q=80"
-    },
-    {
-      id: "proj-4",
-      title: "Interactive Code Hub & Developer Dashboard",
+      title: "ATRIV",
       category: "Web",
-      tags: ["JavaScript", "HTML5", "CSS3", "REST APIs", "LocalStorage"],
-      description: "Feature-packed developer workbench with syntax-highlighted snippet manager, markdown editor, task kanban, and instant local storage sync.",
-      github: "https://github.com/asutoshmohanty23",
+      tags: ["React","TypeScript","Vite","Tailwind","Node","Ollama"],
+      description: "ARTIV is an AI-powered academic document and research integrity verification platform with synthetic text detection, DOI citation checks, author validation, and on-device LLM analysis.",
+      github: "https://github.com/asutoshmohanty23/ATRIV",
       demo: "https://example.com",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80"
     },
     {
-      id: "proj-5",
-      title: "Automated Data Extraction & Analyzer",
-      category: "Python",
-      tags: ["Python", "BeautifulSoup", "Pandas", "Data Structures"],
-      description: "High-performance automated web scraper and data processing pipeline extracting complex datasets and generating statistical trend reports.",
-      github: "https://github.com/asutoshmohanty23",
-      demo: "",
-      image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&auto=format&fit=crop&q=80"
-    },
-    {
-      id: "proj-6",
-      title: "Binary Search Tree & Heap Animator",
-      category: "DSA",
-      tags: ["JavaScript", "Canvas", "Trees", "Heaps", "Algorithms"],
-      description: "Interactive visual tool animating AVL tree self-balancing rotations, binary heap insertions, and graph traversals (BFS/DFS) step by step.",
-      github: "https://github.com/asutoshmohanty23",
+      id: "proj-1",
+      title: "currency convertor",
+      category: "Web",
+      tags: ["HTML", "CSS", "JAVASCRIPT"],
+      description: "Currency Converter web app built with Vanilla JavaScript, HTML5 and CSS3. Features live exchange rate fetching, dynamic country flag updates, and instant currency swap.",
+      github: "https://github.com/asutoshmohanty23/Currency-convertor",
       demo: "https://example.com",
       image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80"
     }
