@@ -177,21 +177,22 @@ Host your portfolio online for **100% free** using any of the following platform
 
 ## 🎨 Personalizing Your Details
 
-### Method 1: Using the In-Browser Customizer (Fastest & No Code)
-1. Launch the website.
-2. Click the **"Edit Profile & Projects"** button in the top navigation bar or the **"Customize Site"** button in the hero section.
-3. Edit your:
-   - **Profile details**: Name, roles, bio, contact email, social links (GitHub, LinkedIn, LeetCode, Resume).
-   - **Avatar & Images**: Paste image URLs or upload images directly.
-   - **Projects**: Add new projects, edit titles, descriptions, categories, and links.
-   - **Education**: Add and update degrees, universities, and grades.
-4. Click **"Save Changes"**. Your details will instantly update and persist in your browser.
-5. Click **"Export JSON"** to download a backup of your configuration.
+### Method 1: Using the Live Customizer & 1-Click Export (Recommended)
+1. Open `index.html` in your browser.
+2. Click the **"Edit Profile & Projects"** button in the navbar.
+3. Edit your profile, skills, avatar photo, education, and projects across the tabs.
+4. Go to the **"Permanent Save & Export"** tab and click **"Download portfolio-data.js"** (or click **"Copy Code"**).
+5. Replace `portfolio-data.js` in your project folder with the downloaded file.
+6. Commit & Push to GitHub:
+   ```bash
+   git add .
+   git commit -m "Update permanent portfolio data"
+   git push
+   ```
+*✨ All visitors on your live GitHub Pages link will instantly see your updated details!*
 
-### Method 2: Editing Source Code Directly
-You can also permanently change default values in `script.js`:
-- Open `script.js` and modify `DEFAULT_PROFILE`, `DEFAULT_EDUCATION`, and `DEFAULT_PROJECTS` at the top of the file (lines 20–100).
-- Open `index.html` to customize metadata title and description tags.
+### Method 2: Editing `portfolio-data.js` Directly in VS Code
+You can also open [`portfolio-data.js`](portfolio-data.js) directly in your code editor and edit the `window.PORTFOLIO_DATA` object (profile details, social handles, education history, and project list). Then commit and push to GitHub.
 
 ---
 
