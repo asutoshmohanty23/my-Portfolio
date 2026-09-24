@@ -16,11 +16,11 @@ const STORAGE_KEYS = {
   EDUCATION: 'dev_portfolio_education_data_v2'
 };
 
-const DEFAULT_AVATAR = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300f2fe'/><stop offset='100%' stop-color='%234facfe'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='%23131b2e'/><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50%' y='58%' font-family='Arial,sans-serif' font-weight='bold' font-size='36' fill='%230d1117' text-anchor='middle'>AM</text></svg>";
-const DEFAULT_PROJECT_IMG = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80";
-
 // Read from window.PORTFOLIO_DATA if loaded from portfolio-data.js
 const RAW_CONFIG = (typeof window !== 'undefined' && window.PORTFOLIO_DATA) ? window.PORTFOLIO_DATA : {};
+
+const DEFAULT_AVATAR = (RAW_CONFIG.profile && RAW_CONFIG.profile.avatarUrl) ? RAW_CONFIG.profile.avatarUrl : "profile-pic.jpeg";
+const DEFAULT_PROJECT_IMG = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80";
 
 const DEFAULT_PROFILE = {
   name: "Asutosh Mohanty",
@@ -182,6 +182,10 @@ function initAppState() {
     const storedProfile = localStorage.getItem(STORAGE_KEYS.PROFILE);
     if (storedProfile) {
       appState.profile = { ...DEFAULT_PROFILE, ...JSON.parse(storedProfile) };
+      // If cached profile still has the old default SVG avatar, update it to the new profile picture
+      if (appState.profile.avatarUrl && (appState.profile.avatarUrl.includes("data:image/svg+xml") || appState.profile.avatarUrl.includes("<svg"))) {
+        appState.profile.avatarUrl = DEFAULT_AVATAR;
+      }
     }
     const storedEducation = localStorage.getItem(STORAGE_KEYS.EDUCATION);
     if (storedEducation) {
