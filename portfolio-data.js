@@ -7,12 +7,14 @@
  * will automatically see this data.
  * 
  * 💡 HOW TO UPDATE IN THE FUTURE:
- * 1. Open your portfolio in the browser.
- * 2. Click "Edit Profile & Projects" to customize your details.
- * 3. Go to the "Backup & Permanent Save" tab and click "Download portfolio-data.js"
+ * 1. Open your portfolio locally on your machine (via VS Code Live Server, localhost, or index.html).
+ * 2. Click "Edit Profile & Projects" (or press Ctrl + Shift + E) to customize your details.
+ * 3. Go to the "Permanent Save & Export" tab and click "Download portfolio-data.js".
  * 4. Replace this file in your project folder and push to GitHub!
  * 
- * OR: Edit this file directly in VS Code / text editor and push to GitHub.
+ * 🔒 TAMPER-PROOF SECURITY:
+ * All edit buttons and customizer tools are strictly visible ONLY when running locally on your device.
+ * Visitors on GitHub Pages or custom domains see a clean, professional, and 100% tamper-proof portfolio!
  * =============================================================================
  */
 
@@ -40,7 +42,7 @@ window.PORTFOLIO_DATA = {
     linkedin: "https://www.linkedin.com/in/asutosh-mohanty-/",
     leetcode: "",
     resume: "#",
-    avatarUrl: "profile-pic.jpeg"
+    avatarUrl: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300f2fe'/><stop offset='100%' stop-color='%234facfe'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='%23131b2e'/><circle cx='50' cy='50' r='46' fill='url(%23g)'/><text x='50%' y='58%' font-family='Arial,sans-serif' font-weight='bold' font-size='36' fill='%230d1117' text-anchor='middle'>AM</text></svg>"
   },
 
   // ---------------------------------------------------------------------------
@@ -64,7 +66,7 @@ window.PORTFOLIO_DATA = {
       grade: "Percentage: 81.4%",
       description: "Core subjects: Physics, Chemistry, Mathematics, English and Physical Education with top percentile honors."
     },
-    
+
     {
       id: "edu-3",
       degree: "Bachelor of Technology (B.Tech) - Computer Science & Engineering",
@@ -83,14 +85,14 @@ window.PORTFOLIO_DATA = {
       id: "proj-1",
       title: "ATRIV",
       category: "Web",
-      tags: ["React","TypeScript","Vite","Tailwind","Node","Ollama"],
+      tags: ["React", "TypeScript", "Vite", "Tailwind", "Node", "Ollama"],
       description: "ARTIV is an AI-powered academic document and research integrity verification platform with synthetic text detection, DOI citation checks, author validation, and on-device LLM analysis.",
       github: "https://github.com/asutoshmohanty23/ATRIV",
       demo: "https://example.com",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80"
     },
     {
-      id: "proj-1",
+      id: "proj-2",
       title: "currency convertor",
       category: "Web",
       tags: ["HTML", "CSS", "JAVASCRIPT"],
