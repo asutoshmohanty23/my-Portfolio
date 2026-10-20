@@ -44,7 +44,9 @@ This repository contains a **production-ready, ultra-modern developer portfolio*
 
 ### 🌟 Why This Portfolio Stands Out
 - **Zero Build Step Required**: Runs instantly in any browser with pure HTML5, CSS3, and ES6+ JavaScript.
-- **Built-in Live Customizer**: Update your name, skills, bio, avatar, projects, and education in real-time through an interactive UI drawer, saved automatically into `localStorage` with JSON export/import support.
+- **🔒 Tamper-Proof Security (Localhost Only)**: Customizer tools, modals, and edit/delete icons are visible strictly when developing locally on your PC (`localhost`, `127.0.0.1`, `file://`). Public visitors on GitHub Pages see a clean, tamper-proof showcase with zero editing buttons.
+- **📐 Adaptive & Symmetrical Header Alignment**: Preserves the 3-item layout (with edit button) on your local developer dashboard, while automatically re-centering the navigation pill on desktop and cleanly spacing the mobile toggle on other devices.
+- **Built-in Live Customizer**: Update your name, skills, bio, avatar, projects, and education in real-time through an interactive UI drawer, saved automatically into `localStorage` with 1-click `portfolio-data.js` export.
 - **DSA Lab Visualizer**: Interactive visualizations for core Data Structures & Algorithms (Bubble Sort, Binary Search, Stack, and Linked List) with speed control and step logs.
 - **Interactive Developer CLI Terminal**: A functional command-line emulator featuring rich commands (`help`, `skills`, `projects`, `dsa`, `matrix`, `theme`, `clear`, etc.).
 - **Fluid Cyberpunk / Glassmorphism Aesthetic**: Dynamic particle canvas, ambient glowing background blobs, smooth micro-animations, and responsive cards.
@@ -55,6 +57,8 @@ This repository contains a **production-ready, ultra-modern developer portfolio*
 
 | Feature | Description |
 | :--- | :--- |
+| 🔒 **Tamper-Proof Admin Mode** | Edit and customizer buttons appear only on your local machine; public visitors see an unmodifiable, professional portfolio. |
+| 📐 **Adaptive Header Alignment** | Perfectly centered floating nav pill on desktop and clean space-between on mobile when edit controls are unavailable. |
 | 🎛️ **Live In-Browser Customizer** | Customize profile bio, avatar image, stats, social links, education items, and projects without touching source code. |
 | 🧠 **Interactive DSA Lab** | Visual algorithm demonstrations with play/pause, step stepping, variable speed, and complexity analysis. |
 | 💻 **Interactive CLI Terminal** | Full-featured terminal interface with tab autocompletion, matrix easter-egg, system diagnostics, and color output. |
@@ -62,7 +66,7 @@ This repository contains a **production-ready, ultra-modern developer portfolio*
 | 🎓 **Education & Career Timeline** | Beautiful academic milestones with degree badges, CGPA highlights, and coursework summaries. |
 | ⚡ **Particle Canvas Background** | Interactive, particle-linked HTML5 Canvas background that responds to ambient animations. |
 | 📱 **100% Fully Responsive** | Pixel-perfect on mobile phones, tablets, laptops, and ultra-wide displays. |
-| 💾 **Data Persistence & Portability** | Saves customizations locally and allows 1-click JSON backup & restore. |
+| 💾 **Data Persistence & Portability** | Saves customizations locally and allows 1-click `portfolio-data.js` download & restore. |
 
 ---
 
@@ -81,10 +85,12 @@ This repository contains a **production-ready, ultra-modern developer portfolio*
 ```text
 my-portfolio/
 │
-├── index.html       # Primary semantic HTML structure and sections
-├── style.css        # Core styling, responsive design tokens & glassmorphism system
-├── script.js        # Portfolio engine: customizer, terminal, DSA lab, particle canvas
-└── README.md        # Documentation and GitHub setup guide
+├── index.html          # Semantic HTML structure, sections & environment detector
+├── style.css           # Glassmorphism styling, responsive layouts & tamper-proof rules
+├── script.js           # Core engine: customizer, terminal, DSA lab, particle canvas
+├── portfolio-data.js   # Permanent data source for profile, projects & education
+├── profile-pic.jpeg    # Developer profile photograph
+└── README.md           # Documentation, setup & GitHub guide
 ```
 
 ---
@@ -178,8 +184,8 @@ Host your portfolio online for **100% free** using any of the following platform
 ## 🎨 Personalizing Your Details
 
 ### Method 1: Using the Live Customizer & 1-Click Export (Recommended)
-1. Open `index.html` in your browser.
-2. Click the **"Edit Profile & Projects"** button in the navbar.
+1. **Open your portfolio locally on your PC** (via VS Code Live Server `http://127.0.0.1:5500` or by opening `index.html` directly).
+2. Click the **"Edit Profile & Projects"** button in the navbar (or press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd>).
 3. Edit your profile, skills, avatar photo, education, and projects across the tabs.
 4. Go to the **"Permanent Save & Export"** tab and click **"Download portfolio-data.js"** (or click **"Copy Code"**).
 5. Replace `portfolio-data.js` in your project folder with the downloaded file.
@@ -190,6 +196,13 @@ Host your portfolio online for **100% free** using any of the following platform
    git push
    ```
 *✨ All visitors on your live GitHub Pages link will instantly see your updated details!*
+
+> [!NOTE]
+> **🔒 Tamper-Proof Visitor Protection:**
+> The "Edit Profile & Projects" button, customize triggers, and card edit/delete controls are **strictly visible on your local machine** (`localhost`, `127.0.0.1`, or `file://`).
+> When hosted on GitHub Pages or custom domains, visitors see a clean, professional, read-only portfolio without any ability to modify your data.
+>
+> 💡 *Want to preview how public visitors see your site right on your PC?* Simply append `?preview=public` to your local browser URL (e.g. `http://127.0.0.1:5500/index.html?preview=public`).
 
 ### Method 2: Editing `portfolio-data.js` Directly in VS Code
 You can also open [`portfolio-data.js`](portfolio-data.js) directly in your code editor and edit the `window.PORTFOLIO_DATA` object (profile details, social handles, education history, and project list). Then commit and push to GitHub.
@@ -203,12 +216,14 @@ Try running these commands in the on-page terminal:
 | Command | Action |
 | :--- | :--- |
 | `help` | Lists all available terminal commands |
-| `about` | Displays developer summary and focus areas |
+| `whoami` | Displays developer summary, roles, and focus areas |
 | `skills` | Lists technical competencies across languages and tools |
 | `projects` | Shows featured engineering projects |
 | `dsa` | Displays algorithm and problem-solving stats |
+| `education` | Displays academic degrees and qualifications |
 | `contact` | Prints social links and contact email |
-| `matrix` | Toggles dynamic green matrix digital rain mode |
+| `customize` | Opens the Profile & Project Customizer *(Local Dev Mode)* |
+| `date` | Displays current timestamp |
 | `clear` | Clears the terminal output screen |
 
 ---
