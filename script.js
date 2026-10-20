@@ -176,8 +176,33 @@ function normalizeImageUrl(url) {
   return url;
 }
 
+// =============================================================================
+// ENVIRONMENT DETECTOR (Localhost / Developer-Only Mode)
+// Controls visibility of live customizer & editing tools.
+// =============================================================================
+function isLocalEnvironment() {
+  const host = window.location.hostname;
+  const isLocalHost = host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
+  const isFileProto = window.location.protocol === 'file:';
+  const isPreviewPublic = window.location.search.indexOf('preview=public') !== -1;
+  return (isLocalHost || isFileProto) && !isPreviewPublic;
+}
+
 // Initialize State from LocalStorage
 function initAppState() {
+  // Ensure the html element has .is-local class if on local machine
+  if (isLocalEnvironment()) {
+    document.documentElement.classList.add('is-local');
+  }
+
+  // On public production (GitHub Pages), always ensure data is drawn cleanly from PORTFOLIO_DATA
+  if (!isLocalEnvironment()) {
+    appState.profile = { ...DEFAULT_PROFILE };
+    appState.education = [...DEFAULT_EDUCATION];
+    appState.projects = [...DEFAULT_PROJECTS];
+    return;
+  }
+
   try {
     const storedProfile = localStorage.getItem(STORAGE_KEYS.PROFILE);
     if (storedProfile) {
@@ -332,7 +357,7 @@ function renderEducationUI() {
       <div class="projects-empty-state">
         <i class="fa-solid fa-graduation-cap"></i>
         <h3>No Education Records Found</h3>
-        <p>Click "Add Education" to add your degree or school details!</p>
+        <p>${isLocalEnvironment() ? 'Click "Add Education" to add your degree or school details!' : 'Education credentials will be listed here soon.'}</p>
       </div>
     `;
     return;
@@ -444,7 +469,7 @@ function renderProjectsGrid() {
       <div class="projects-empty-state">
         <i class="fa-solid fa-folder-open"></i>
         <h3>No projects found in this category</h3>
-        <p>Click "Add New Project" to upload or create one!</p>
+        <p>${isLocalEnvironment() ? 'Click "Add New Project" to upload or create one!' : 'Select another category above to view more featured projects.'}</p>
       </div>
     `;
     return;
@@ -1053,18 +1078,21 @@ function initTerminal() {
     const command = parts[0].toLowerCase();
 
     switch (command) {
-      case 'help':
+      case 'help': {
+        const customizeLine = isLocalEnvironment() 
+          ? `\n  <span class="cmd-highlight">customize</span>    - Open the in-browser Profile & Education Editor` 
+          : '';
         printLine(`Available commands:
   <span class="cmd-highlight">skills</span>       - List technical skills & language proficiencies
   <span class="cmd-highlight">education</span>    - View academic degrees & qualifications
   <span class="cmd-highlight">dsa</span>          - Show Data Structures & Problem Solving stats
   <span class="cmd-highlight">projects</span>     - List all open-source & portfolio projects
   <span class="cmd-highlight">whoami</span>       - Display developer bio & roles
-  <span class="cmd-highlight">contact</span>      - Show email, GitHub, and social contacts
-  <span class="cmd-highlight">customize</span>    - Open the in-browser Profile & Education Editor
+  <span class="cmd-highlight">contact</span>      - Show email, GitHub, and social contacts${customizeLine}
   <span class="cmd-highlight">date</span>         - Display current timestamp
   <span class="cmd-highlight">clear</span>        - Clear terminal screen`);
         break;
+      }
 
       case 'whoami':
         printLine(`<b>${escapeHTML(appState.profile.name)}</b>
@@ -1111,8 +1139,12 @@ Bio: ${escapeHTML(appState.profile.bio)}`);
 
       case 'customize':
       case 'edit':
-        openCustomizerModal();
-        printLine(`Opening Profile Customizer...`, 'system-msg');
+        if (isLocalEnvironment()) {
+          openCustomizerModal();
+          printLine(`Opening Profile Customizer...`, 'system-msg');
+        } else {
+          printLine(`Profile editing is disabled in public view. Run locally on your PC to customize your portfolio.`, 'error-msg');
+        }
         break;
 
       case 'clear':
@@ -1172,6 +1204,7 @@ Bio: ${escapeHTML(appState.profile.bio)}`);
 // =============================================================================
 
 function openCustomizerModal(defaultTab = 'tab-personal') {
+  if (!isLocalEnvironment()) return;
   const modal = document.getElementById('customizer-modal');
   if (!modal) return;
 
@@ -1239,6 +1272,7 @@ function switchModalTab(targetTabId) {
 // Education Modal Handlers
 // -----------------------------------------------------------------------------
 function openEditEducationModal(eduId = null) {
+  if (!isLocalEnvironment()) return;
   const modal = document.getElementById('education-edit-modal');
   if (!modal) return;
 
@@ -1303,6 +1337,7 @@ function closeEducationEditModal() {
 }
 
 function deleteEducation(eduId) {
+  if (!isLocalEnvironment()) return;
   if (confirm("Are you sure you want to remove this education record?")) {
     appState.education = appState.education.filter(e => e.id !== eduId);
     saveState();
@@ -1316,6 +1351,7 @@ function deleteEducation(eduId) {
 // Project Modal Handlers
 // -----------------------------------------------------------------------------
 function openEditProjectModal(projectId = null) {
+  if (!isLocalEnvironment()) return;
   const modal = document.getElementById('project-edit-modal');
   if (!modal) return;
 
@@ -1394,6 +1430,7 @@ function closeProjectEditModal() {
 }
 
 function deleteProject(projectId) {
+  if (!isLocalEnvironment()) return;
   if (confirm("Are you sure you want to delete this project?")) {
     appState.projects = appState.projects.filter(p => p.id !== projectId);
     saveState();
@@ -1936,6 +1973,18 @@ window.PORTFOLIO_DATA = ${JSON.stringify(dataObj, null, 2)};
       contactForm.reset();
     });
   }
+
+  // ---------------------------------------------------------------------------
+  // Developer Localhost Keyboard Shortcut (Ctrl + Shift + E)
+  // ---------------------------------------------------------------------------
+  window.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && (e.key === 'E' || e.key === 'e')) {
+      e.preventDefault();
+      if (isLocalEnvironment()) {
+        openCustomizerModal();
+      }
+    }
+  });
 }
 
 // =============================================================================
