@@ -43,6 +43,7 @@ window.PORTFOLIO_DATA = {
     leetcode: "",
     resume: "#",
     avatarUrl: "profile-pic.jpeg"
+  },
 
   // ---------------------------------------------------------------------------
   // 2. EDUCATION & QUALIFICATIONS

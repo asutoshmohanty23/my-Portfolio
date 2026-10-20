@@ -19,7 +19,9 @@ const STORAGE_KEYS = {
 // Read from window.PORTFOLIO_DATA if loaded from portfolio-data.js
 const RAW_CONFIG = (typeof window !== 'undefined' && window.PORTFOLIO_DATA) ? window.PORTFOLIO_DATA : {};
 
-const DEFAULT_AVATAR = (RAW_CONFIG.profile && RAW_CONFIG.profile.avatarUrl) ? RAW_CONFIG.profile.avatarUrl : "profile-pic.jpeg";
+const DEFAULT_AVATAR = (RAW_CONFIG.profile && RAW_CONFIG.profile.avatarUrl && !RAW_CONFIG.profile.avatarUrl.includes('<svg') && !RAW_CONFIG.profile.avatarUrl.includes('data:image/svg')) 
+  ? RAW_CONFIG.profile.avatarUrl 
+  : "profile-pic.jpeg";
 const DEFAULT_PROJECT_IMG = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80";
 
 const DEFAULT_PROFILE = {
@@ -214,9 +216,9 @@ function initAppState() {
     const storedProfile = localStorage.getItem(STORAGE_KEYS.PROFILE);
     if (storedProfile) {
       appState.profile = { ...DEFAULT_PROFILE, ...JSON.parse(storedProfile) };
-      // If cached profile still has the old default SVG avatar, update it to the new profile picture
-      if (appState.profile.avatarUrl && (appState.profile.avatarUrl.includes("data:image/svg+xml") || appState.profile.avatarUrl.includes("<svg"))) {
-        appState.profile.avatarUrl = DEFAULT_AVATAR;
+      // If cached profile still has the old default SVG avatar or is missing, update it to profile-pic.jpeg
+      if (!appState.profile.avatarUrl || appState.profile.avatarUrl.includes("data:image/svg+xml") || appState.profile.avatarUrl.includes("<svg")) {
+        appState.profile.avatarUrl = "profile-pic.jpeg";
       }
     }
     const storedEducation = localStorage.getItem(STORAGE_KEYS.EDUCATION);
@@ -265,17 +267,30 @@ function renderProfileUI() {
   document.getElementById('stat-languages').textContent = p.languagesCount || "6";
 
   // Avatar Images (Hero Thumbnail & About Section) with Smart Normalizer and Fallback
-  const finalAvatar = normalizeImageUrl(p.avatarUrl) || DEFAULT_AVATAR;
+  let finalAvatar = p.avatarUrl;
+  if (!finalAvatar || finalAvatar.includes('data:image/svg') || finalAvatar.includes('<svg')) {
+    finalAvatar = 'profile-pic.jpeg';
+  } else {
+    finalAvatar = normalizeImageUrl(finalAvatar) || 'profile-pic.jpeg';
+  }
 
   const heroAvatarImg = document.getElementById('hero-avatar-img');
   if (heroAvatarImg) {
-    heroAvatarImg.onerror = () => { heroAvatarImg.src = DEFAULT_AVATAR; };
+    heroAvatarImg.onerror = function() {
+      if (this.src.indexOf('profile-pic.jpeg') === -1) {
+        this.src = 'profile-pic.jpeg';
+      }
+    };
     heroAvatarImg.src = finalAvatar;
   }
 
   const aboutAvatarImg = document.getElementById('about-avatar-img');
   if (aboutAvatarImg) {
-    aboutAvatarImg.onerror = () => { aboutAvatarImg.src = DEFAULT_AVATAR; };
+    aboutAvatarImg.onerror = function() {
+      if (this.src.indexOf('profile-pic.jpeg') === -1) {
+        this.src = 'profile-pic.jpeg';
+      }
+    };
     aboutAvatarImg.src = finalAvatar;
   }
 
@@ -1225,12 +1240,14 @@ function openCustomizerModal(defaultTab = 'tab-personal') {
   document.getElementById('edit-location').value = appState.profile.location || '';
   
   // Set Avatar URL & Preview
-  const currentAvatar = appState.profile.avatarUrl || DEFAULT_AVATAR;
+  const currentAvatar = (appState.profile.avatarUrl && !appState.profile.avatarUrl.includes('<svg') && !appState.profile.avatarUrl.includes('data:image/svg')) 
+    ? appState.profile.avatarUrl 
+    : 'profile-pic.jpeg';
   document.getElementById('edit-avatar-url').value = currentAvatar.startsWith('data:') ? '' : currentAvatar;
   const avatarPreview = document.getElementById('edit-avatar-preview');
   if (avatarPreview) {
-    avatarPreview.onerror = () => { avatarPreview.src = DEFAULT_AVATAR; };
-    avatarPreview.src = normalizeImageUrl(currentAvatar) || DEFAULT_AVATAR;
+    avatarPreview.onerror = () => { avatarPreview.src = 'profile-pic.jpeg'; };
+    avatarPreview.src = normalizeImageUrl(currentAvatar) || 'profile-pic.jpeg';
   }
 
   // Populate Social Links Form
