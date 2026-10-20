@@ -3037,19 +3037,41 @@ button, input, textarea, select {
 /* =============================================================================
    DEVELOPER / LOCALHOST-ONLY CONTROLS (Tamper-Proof Protection)
    Completely hides all editing tools and customizer buttons on public domains (GitHub Pages).
-   These controls are only rendered when running locally on your PC (localhost, 127.0.0.1, or file://).
+/* =============================================================================
+   TAMPER-PROOF CONTROLS & DEV VISIBILITY
+   Hidden by default for everyone on the internet.
+   Rendered strictly when running locally or authorized with secret admin badge.
    ============================================================================= */
-html:not(.is-local) #open-customizer-btn,
-html:not(.is-local) #hero-customize-trigger,
-html:not(.is-local) #add-education-quick-btn,
-html:not(.is-local) #add-project-quick-btn,
-html:not(.is-local) .edu-actions-top,
-html:not(.is-local) .project-actions-quick,
-html:not(.is-local) #customizer-modal,
-html:not(.is-local) #education-edit-modal,
-html:not(.is-local) #project-edit-modal,
-html:not(.is-local) .dev-only {
+.dev-only,
+#open-customizer-btn,
+#hero-customize-trigger,
+#add-education-quick-btn,
+#add-project-quick-btn,
+.edu-actions-top,
+.project-actions-quick,
+#customizer-modal,
+#education-edit-modal,
+#project-edit-modal {
   display: none !important;
+}
+
+html.is-local .dev-only,
+html.is-local #open-customizer-btn,
+html.is-local #hero-customize-trigger,
+html.is-local #add-education-quick-btn,
+html.is-local #add-project-quick-btn {
+  display: inline-flex !important;
+}
+
+html.is-local .edu-actions-top,
+html.is-local .project-actions-quick {
+  display: flex !important;
+}
+
+html.is-local #customizer-modal.active,
+html.is-local #education-edit-modal.active,
+html.is-local #project-edit-modal.active {
+  display: flex !important;
 }
 
 /* =============================================================================

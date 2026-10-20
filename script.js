@@ -184,15 +184,22 @@ function isLocalEnvironment() {
   const host = window.location.hostname;
   const isLocalHost = host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
   const isFileProto = window.location.protocol === 'file:';
+  let isAuthorized = false;
+  try {
+    isAuthorized = localStorage.getItem('portfolio_admin_authorized') === 'true';
+  } catch(e) {}
   const isPreviewPublic = window.location.search.indexOf('preview=public') !== -1;
-  return (isLocalHost || isFileProto) && !isPreviewPublic;
+  return (isLocalHost || isFileProto || isAuthorized) && !isPreviewPublic;
 }
 
 // Initialize State from LocalStorage
 function initAppState() {
-  // Ensure the html element has .is-local class if on local machine
+  // Ensure .is-local class and visible styles are enabled on authorized / local environment
   if (isLocalEnvironment()) {
     document.documentElement.classList.add('is-local');
+    document.querySelectorAll('.dev-only, #open-customizer-btn, #hero-customize-trigger, #add-education-quick-btn, #add-project-quick-btn').forEach(el => {
+      el.style.display = '';
+    });
   }
 
   // On public production (GitHub Pages), always ensure data is drawn cleanly from PORTFOLIO_DATA
