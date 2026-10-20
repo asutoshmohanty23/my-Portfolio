@@ -3033,3 +3033,70 @@ button, input, textarea, select {
     font-size: 0.8rem;
   }
 }
+
+/* =============================================================================
+   DEVELOPER / LOCALHOST-ONLY CONTROLS (Tamper-Proof Protection)
+   Completely hides all editing tools and customizer buttons on public domains (GitHub Pages).
+   These controls are only rendered when running locally on your PC (localhost, 127.0.0.1, or file://).
+   ============================================================================= */
+html:not(.is-local) #open-customizer-btn,
+html:not(.is-local) #hero-customize-trigger,
+html:not(.is-local) #add-education-quick-btn,
+html:not(.is-local) #add-project-quick-btn,
+html:not(.is-local) .edu-actions-top,
+html:not(.is-local) .project-actions-quick,
+html:not(.is-local) #customizer-modal,
+html:not(.is-local) #education-edit-modal,
+html:not(.is-local) #project-edit-modal,
+html:not(.is-local) .dev-only {
+  display: none !important;
+}
+
+/* =============================================================================
+   PUBLIC HEADER ALIGNMENT (When Edit Controls are Unavailable on Other Devices)
+   Ensures the header is balanced, centered, and pristine across all viewports.
+   ============================================================================= */
+
+/* Desktop Screens (> 1024px):
+   Symmetrically center the floating navigation pill so the brand on the left
+   does not push the menu off-center. */
+@media (min-width: 1025px) {
+  html:not(.is-local) .nav-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+  html:not(.is-local) .nav-brand {
+    justify-self: start;
+  }
+  html:not(.is-local) .nav-menu {
+    justify-self: center;
+    margin: 0;
+  }
+  html:not(.is-local) .nav-actions {
+    justify-self: end;
+    min-width: 1px;
+  }
+}
+
+/* Tablet & Mobile Screens (<= 1024px):
+   Clean space-between layout with Brand on the left and Mobile Toggle on the right. */
+@media (max-width: 1024px) {
+  html:not(.is-local) .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  html:not(.is-local) .nav-brand {
+    flex: 0 0 auto;
+  }
+  html:not(.is-local) .nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+}
+
